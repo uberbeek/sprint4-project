@@ -11,10 +11,12 @@ df['design'] = df['model'].str.split().str[1:].str.join(' ')
 
 
 # Convert integer columns to a type that supports missing values
+df['price'] = df['price'].astype('Int64')
 df['model_year'] = df['model_year'].astype('Int64')
 df['cylinders'] = df['cylinders'].astype('Int64')
 df['odometer'] = df['odometer'].astype('Int64')
 df['is_4wd'] = df['is_4wd'].astype('Int64')
+df['days_listed'] = df['days_listed'].astype('Int64')
 
 
 # Display the dataframe
