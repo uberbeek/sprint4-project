@@ -15,8 +15,8 @@ df = df.dropna()
 
 
 # Display the dataframe
-st.header('Vehicle Data')
-st.dataframe(df)
+# st.header('Vehicle Data')
+# st.dataframe(df)
 
 
 # Display bar chart of manufacturer by condition
