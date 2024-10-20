@@ -4,8 +4,11 @@ import pandas as pd
 import plotly.express as px
 
 
-# Disable pyarrow to fix deployment issue
-st.set_option('deprecation.show_pyarrow_table', False)
+# Convert integer columns to a type that supports missing values
+df_cars['model_year'] = df_cars['model_year'].astype('Int64')
+df_cars['cylinders'] = df_cars['cylinders'].astype('Int64')
+df_cars['odometer'] = df_cars['odometer'].astype('Int64')
+df_cars['is_4wd'] = df_cars['is_4wd'].astype('Int64')
 
 
 # Import data and extract manufacturer from model column
