@@ -10,16 +10,8 @@ df['manufacturer'] = df['model'].str.split().str[0]
 df['design'] = df['model'].str.split().str[1:].str.join(' ')
 
 
-# Convert integer columns to a type that supports missing values
-df['price'] = pd.to_numeric(df['price'], errors='coerce').astype('Int64')
-df['model_year'] = pd.to_numeric(
-    df['model_year'], errors='coerce').astype('Int64')
-df['cylinders'] = pd.to_numeric(
-    df['cylinders'], errors='coerce').astype('Int64')
-df['odometer'] = pd.to_numeric(df['odometer'], errors='coerce').astype('Int64')
-df['is_4wd'] = pd.to_numeric(df['is_4wd'], errors='coerce').astype('Int64')
-df['days_listed'] = pd.to_numeric(
-    df['days_listed'], errors='coerce').astype('Int64')
+# Drop missing values to avoid deployment errors
+df.dropna()
 
 
 # Display the dataframe
