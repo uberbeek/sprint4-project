@@ -4,17 +4,17 @@ import pandas as pd
 import plotly.express as px
 
 
+# Import data and extract manufacturer from model column
+df = pd.read_csv('vehicles_us.csv')
+df['manufacturer'] = df['model'].str.split().str[0]
+df['design'] = df['model'].str.split().str[1:].str.join(' ')
+
+
 # Convert integer columns to a type that supports missing values
 df['model_year'] = df['model_year'].astype('Int64')
 df['cylinders'] = df['cylinders'].astype('Int64')
 df['odometer'] = df['odometer'].astype('Int64')
 df['is_4wd'] = df['is_4wd'].astype('Int64')
-
-
-# Import data and extract manufacturer from model column
-df = pd.read_csv('vehicles_us.csv')
-df['manufacturer'] = df['model'].str.split().str[0]
-df['design'] = df['model'].str.split().str[1:].str.join(' ')
 
 
 # Display the dataframe
