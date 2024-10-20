@@ -4,6 +4,10 @@ import pandas as pd
 import plotly.express as px
 
 
+# Disable pyarrow to fix deployment issue
+st.set_option('deprecation.show_pyarrow_table', False)
+
+
 # Import data and extract manufacturer from model column
 df = pd.read_csv('vehicles_us.csv')
 df['manufacturer'] = df['model'].str.split().str[0]
