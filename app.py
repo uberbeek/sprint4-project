@@ -11,7 +11,7 @@ df['design'] = df['model'].str.split().str[1:].str.join(' ')
 
 
 # Drop missing values to avoid deployment errors
-df.dropna()
+df = df.dropna()
 
 
 # Display the dataframe
