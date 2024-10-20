@@ -5,10 +5,10 @@ import plotly.express as px
 
 
 # Convert integer columns to a type that supports missing values
-df_cars['model_year'] = df_cars['model_year'].astype('Int64')
-df_cars['cylinders'] = df_cars['cylinders'].astype('Int64')
-df_cars['odometer'] = df_cars['odometer'].astype('Int64')
-df_cars['is_4wd'] = df_cars['is_4wd'].astype('Int64')
+df['model_year'] = df['model_year'].astype('Int64')
+df['cylinders'] = df['cylinders'].astype('Int64')
+df['odometer'] = df['odometer'].astype('Int64')
+df['is_4wd'] = df['is_4wd'].astype('Int64')
 
 
 # Import data and extract manufacturer from model column
