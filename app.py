@@ -10,15 +10,6 @@ df['manufacturer'] = df['model'].str.split().str[0]
 df['design'] = df['model'].str.split().str[1:].str.join(' ')
 
 
-# Drop missing values to avoid deployment errors
-df = df.dropna()
-
-
-# Display the dataframe
-# st.header('Vehicle Data')
-# st.dataframe(df)
-
-
 # Display bar chart of manufacturer by condition
 st.header('Manufacturer by Condition')
 st.write(px.histogram(df, x='manufacturer', color='condition'))
@@ -50,19 +41,22 @@ st.write(px.histogram(df, x='type', color='paint_color',
 # Display histogram of odometer by type with a checkbox for outlyers > 300,000 miles
 st.header('Histogram of Odometer by Type')
 
-show_outliers = st.checkbox('Include outliers with > 300,000 miles')
-df_filtered_by_odometer = df if show_outliers else df[df['odometer'] < 300000]
+show_odometer_outliers = st.checkbox('Include outliers with > 300,000 miles')
+df_filtered_by_odometer = df if show_odometer_outliers else df[df['odometer'] < 300000]
 
 st.write(px.histogram(df_filtered_by_odometer, x='odometer', color='type'))
 
 
-# Display scatterplot of price by model year with a checkbox for model years since 1960
+# Display scatterplot of price by model year with checkboxes for model years since 1960 and prices > 100,000
 st.header('Scatter Plot of Price by Model Year')
 
 show_before_1960 = st.checkbox('Include vehicles from before 1960')
 df_filtered_by_year = df if show_before_1960 else df[df['model_year'] >= 1960]
+show_price_outliers = st.checkbox('Include outliers of > $100,000')
+df_filtered_by_year_price = df_filtered_by_year if show_price_outliers else df_filtered_by_year[
+    df_filtered_by_year['price'] < 100000]
 
-st.write(px.scatter(df_filtered_by_year,
+st.write(px.scatter(df_filtered_by_year_price,
          x='model_year', y='price'))
 
 
